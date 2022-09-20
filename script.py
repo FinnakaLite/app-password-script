@@ -1,4 +1,5 @@
 import sys
+import subprocess
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit
 from PyQt5.QtGui import QIcon
  
@@ -6,7 +7,7 @@ class App(QWidget):
  
     def __init__(self):
         super().__init__()
-        self.title = 'PyQt5 input dialogs - pythonspot.com'
+        self.title = 'Input'
         self.left = 10
         self.top = 10
         self.width = 640
@@ -24,10 +25,13 @@ class App(QWidget):
         if okPressed and text != '':
             if text == "password":
                 print("Correct!")
+                subprocess.call(
+                    ["/usr/bin/open", "-W", "-n", "-a", "/Applications/VLC.app"]
+                    )
                 sys.exit(0)
             else:
-                print("Incorrect password!")
-                sys.exit(1)
+                print("Error")
+                sys.exit(0)
  
 if __name__ == '__main__':
     app = QApplication(sys.argv)
